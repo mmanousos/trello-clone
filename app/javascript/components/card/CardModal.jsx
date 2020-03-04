@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 const CardModal = ({ card, listTitle }) => {
   const labels = card.labels.map(label => (
@@ -49,7 +50,8 @@ const CardModal = ({ card, listTitle }) => {
                       className="checkbox"
                       checked=""
                     />
-                    {card.due_date}
+                    <Moment parse="MM-DD">{card.due_date}</Moment> at
+                    <Moment parse="HH:mm">{card.due_date}</Moment>
                     <span>{isPastDue()}(past due)</span>
                   </div>
                 </li>
