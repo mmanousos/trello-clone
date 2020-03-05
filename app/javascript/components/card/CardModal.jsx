@@ -8,6 +8,8 @@ const CardModal = ({ card, listTitle }) => {
     </div>
   ));
 
+  // const date = moment(card.due_date).format("MMM DD HH:mm");
+
   const isPastDue = () => {
     // card.due_date
     // returns "past due" or nothing
@@ -50,8 +52,11 @@ const CardModal = ({ card, listTitle }) => {
                       className="checkbox"
                       checked=""
                     />
-                    <Moment parse="MM-DD">{card.due_date}</Moment> at
-                    <Moment parse="HH:mm">{card.due_date}</Moment>
+                    {/* {console.log(card.due_date)} */}
+                    {/* {date} */}
+                    <Moment parse="MMM DD HH:mm">card.due_date</Moment>
+                    {/* {card.due_date}</Moment> */}
+                    {/* {card.due_date} */}
                     <span>{isPastDue()}(past due)</span>
                   </div>
                 </li>
