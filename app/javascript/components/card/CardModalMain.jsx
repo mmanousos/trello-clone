@@ -1,13 +1,8 @@
 import React from "react";
 import { formattedDueDate, dueClass } from "../shared/MomentUtil";
+import LabelContainer from "../label/LabelContainer";
 
 const CardModalMain = ({ card }) => {
-  const labels = card.labels.map(label => (
-    <div className="member-container" key={label}>
-      <div className={`${label} label colorblindable`}></div>
-    </div>
-  ));
-
   return (
     <section className="modal-main">
       <ul className="modal-outer-list">
@@ -15,7 +10,7 @@ const CardModalMain = ({ card }) => {
           <ul className="modal-details-list">
             <li className="labels-section">
               <h3>Labels</h3>
-              {labels}
+              <LabelContainer labels={card.labels} />
               <div className="member-container">
                 <i className="plus-icon sm-icon"></i>
               </div>
