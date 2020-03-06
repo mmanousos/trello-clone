@@ -1,25 +1,33 @@
 import React from "react";
 import ClickableLabel from "./ClickableLabel";
 
-const LabelModal = ({ activeLabels }) => {
-  const ALL_LABELS = ["green", "yellow", "orange", "red", "purple", "blue"];
-
-  const labelIsActive = label => {
-    return activeLabels.includes(label);
-  };
-
-  const labels = ALL_LABELS.map(label => {
+const LabelModal = ({ labels, cardId, onCloseClick, onToggleClick }) => {
+  const clickableLabels = labels.map(label => {
     return (
-      <ClickableLabel label={label} active={labelIsActive(label)} key={label} />
+      <ClickableLabel
+        label={label.color}
+        active={label.active}
+        key={label.color}
+        onToggleClick={onToggleClick}
+      />
     );
   });
-  console.log(labels);
+
+  const handleCloseClick = e => {
+    e.preventDefault();
+    onCloseClick();
+  };
+
   return (
     <div className="popover labels">
       <div id="add-options-labels-dropdown">
         <header>
           <span>Labels</span>
-          <a href="#" className="icon-sm icon-close"></a>
+          <a
+            href={`/cards/${cardId}`}
+            className="icon-sm icon-close"
+            onClick={handleCloseClick}
+          ></a>
         </header>
         <div className="content">
           <input
@@ -28,7 +36,7 @@ const LabelModal = ({ activeLabels }) => {
             type="text"
           />
           <div className="labels-search-results">
-            <ul className="label-list">{labels}</ul>
+            <ul className="label-list">{clickableLabels}</ul>
             <ul className="light-list">
               <li className="not-implemented">Create a new label</li>
               <hr />

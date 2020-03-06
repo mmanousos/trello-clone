@@ -1,8 +1,8 @@
 import React from "react";
 
-const ClickableLabel = ({ label, active }) => {
+const ClickableLabel = ({ label, active, onToggleClick }) => {
   return (
-    <li>
+    <li onClick={() => onToggleClick(label)}>
       <div className={label + " colorblindable"} data-id="1">
         {active ? <i className="check-icon sm-icon"></i> : null}
       </div>

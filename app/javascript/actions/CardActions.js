@@ -57,3 +57,21 @@ export function updateCardTitle(cardId, title, callback) {
     });
   };
 }
+
+export function updateLabels(cardId, labels, callback) {
+  const payload = {
+    card: {
+      labels
+    }
+  };
+
+  return function(dispatch) {
+    apiClient.updateCard(cardId, payload, updatedCard => {
+      dispatch(updateCardSuccess(updatedCard));
+
+      if (callback) {
+        callback();
+      }
+    });
+  };
+}

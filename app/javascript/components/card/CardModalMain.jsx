@@ -8,13 +8,8 @@ const CardModalMain = ({ card }) => {
       <ul className="modal-outer-list">
         <li className="details-section">
           <ul className="modal-details-list">
-            <li className="labels-section">
-              <h3>Labels</h3>
-              <LabelContainer labels={card.labels} />
-              <div className="member-container">
-                <i className="plus-icon sm-icon"></i>
-              </div>
-            </li>
+            <LabelContainer labels={card.labels} cardId={card.id} />
+
             {card.due_date ? (
               <li className="due-date-section">
                 <h3>Due Date</h3>

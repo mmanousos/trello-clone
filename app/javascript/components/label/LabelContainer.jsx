@@ -1,9 +1,17 @@
 import React from "react";
-import LabelModalContainer from "./LabelModalContainer";
+import EditLabelModalContainer from "./EditLabelModalContainer";
 
 class LabelContainer extends React.Component {
   state = {
-    editing: true
+    editing: false
+  };
+
+  handleCloseClick = e => {
+    this.setState({ editing: false });
+  };
+
+  handleOpenClick = e => {
+    this.setState({ editing: true });
   };
 
   render() {
@@ -14,17 +22,22 @@ class LabelContainer extends React.Component {
     ));
 
     return (
-      <div>
+      <li className="labels-section">
+        <h3>Labels</h3>
         {labels}
+        <div className="member-container" onClick={this.handleOpenClick}>
+          <i className="plus-icon sm-icon"></i>
+        </div>
         {this.state.editing ? (
-          <LabelModalContainer
+          <EditLabelModalContainer
             activeLabels={this.props.labels}
             cardId={this.props.cardId}
+            onCloseClick={this.handleCloseClick}
           />
         ) : (
           ""
         )}
-      </div>
+      </li>
     );
   }
 }
